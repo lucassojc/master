@@ -1,0 +1,13 @@
+{% extends "/_global/index.html" %}
+
+{% block main %}
+{% spaceless %}
+    <p>Ulogovani ste kao: {{admin.username}}</p>
+    
+    <a href="{{BASE}}program-poslovanja/add">Program poslovanja add</a> </br>
+    <a href="{{BASE}}plan-javnih-nabavki/add">Plan javnih nabavki add</a> </br>
+    <a href="{{BASE}}realizacija-sprovodjenja-nabavke/add">Realizacija sprovodjenja nabavke add</a> </br>
+    <a href="{{BASE}}realizacija-ugovora/add">Realizacija ugovora add</a> </br>
+
+{% endspaceless %}
+{% endblock %}

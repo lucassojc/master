@@ -8,15 +8,15 @@
     class MainController extends Controller {
         public function home() {
 
-            $administratorId =  $this->getSession()->get('administrator_id');
+            // $administratorId =  $this->getSession()->get('administrator_id');
 
-            if (!$administratorId) {
+            // if (!$administratorId) {
                 
-            }
+            // }
 
-            $administratorModel = new AdministratorModel($this->getDatabaseConnection());
-            $admin = $administratorModel->getById(1);
-            $this->set('admin', $admin);
+            // $administratorModel = new AdministratorModel($this->getDatabaseConnection());
+            // $admin = $administratorModel->getById(1);
+            // $this->set('admin', $admin);
         }
 
         public function postLogin() {

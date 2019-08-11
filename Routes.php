@@ -18,5 +18,5 @@
         \App\Core\Route::get('|^realizacija-ugovora/add/?$|',               'RealizacijaUgovora',                'getAdd'),
         \App\Core\Route::post('|^realizacija-ugovora/add/?$|',              'RealizacijaUgovora',                'postAdd'),
         
-        \App\Core\Route::any('|^.*$|',                             'Main',                   'postLogin')
+        \App\Core\Route::any('|^.*$|',                             'Main',                   'home')
     ];
