@@ -17,17 +17,6 @@
         \App\Core\Route::post('|^realizacija-sprovodjenja-nabavke/add/?$|', 'RealizacijaSprovodjenjaNabavke',    'postAdd'),
         \App\Core\Route::get('|^realizacija-ugovora/add/?$|',               'RealizacijaUgovora',                'getAdd'),
         \App\Core\Route::post('|^realizacija-ugovora/add/?$|',              'RealizacijaUgovora',                'postAdd'),
-
-        #Admin role routes:
-        // \App\Core\Route::get('|^admin/login/?$|',                  'Main',                   'getLogin'),
-        // \App\Core\Route::post('|^admin/login/?$|',                 'Main',                   'postLogin'),
-        \App\Core\Route::get('|^admin-panel/?$|',                  'AdminPanel',             'index'),
-        // \App\Core\Route::get('|^admin/logout/?$|',                      'Main',              'getLogout'),
-        \App\Core\Route::get('|^admin/products/?$|',               'AdminProductMenagement', 'products'),
-        \App\Core\Route::get('|^admin/products/edit/([0-9]+)?$|',  'AdminProductMenagement', 'getEdit'),
-        \App\Core\Route::post('|^admin/products/edit/([0-9]+)?$|', 'AdminProductMenagement', 'postEdit'),
-        \App\Core\Route::get('|^admin/products/add/?$|',           'AdminProductMenagement', 'getAdd'),
-        \App\Core\Route::post('|^admin/products/add/?$|',          'AdminProductMenagement', 'postAdd'),
-
+        
         \App\Core\Route::any('|^.*$|',                             'Main',                   'postLogin')
     ];
