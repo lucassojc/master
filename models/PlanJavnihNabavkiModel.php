@@ -12,11 +12,10 @@
         protected function getFields(): array {
             return [
                 'plan_javnih_nabavki_id'    => new Field((new NumberValidator())->setIntegerLength(10), false),
-                'aproprijacija_fk'          => new Field((new StringValidator())->setMaxLength(128)),
                 'odeljenje'                 => new Field((new StringValidator())->setMaxLength(128)), //mozda enum
                 'vrsta_predmeta'            => new Field((new StringValidator())->setMaxLength(128)), //enum
                 'vrsta_postupka'            => new Field((new StringValidator())->setMaxLength(128)), //enum
-                'opis'                      => new Field((new StringValidator())->setMaxLength(128)),
+                'opis_pjn'                  => new Field((new StringValidator())->setMaxLength(128)),
                 'iznos_sa_pdv'              => new Field((new NumberValidator())->setDecimal()
                                                                                 ->setUnsigned()
                                                                                 ->setIntegerLength(10)
@@ -43,6 +42,7 @@
                 'napomena'                  => new Field((new StringValidator())->setMaxLength(128)),
                 'razlog'                    => new Field((new StringValidator())->setMaxLength(128)),
                 'kontrolni_iznos'           => new Field((new StringValidator())->setMaxLength(128)),
+                'program_poslovanja_id'     => new Field((new NumberValidator())->setIntegerLength(10)),
                 'administrator_id'          => new Field((new NumberValidator())->setIntegerLength(10))
             ];
         }
