@@ -12,7 +12,7 @@
             return [
                 'program_poslovanja_id'     => new Field((new NumberValidator())->setIntegerLength(10), false),
                 'aproprijacija'             => new Field((new StringValidator())->setMaxLength(128)),
-                'opis_pp'                      => new Field((new StringValidator())->setMaxLength(128)),
+                'opis_pp'                   => new Field((new StringValidator())->setMaxLength(128)),
                 'iznos'                     => new Field((new NumberValidator())->setDecimal()
                                                                                 ->setUnsigned()
                                                                                 ->setIntegerLength(10)
