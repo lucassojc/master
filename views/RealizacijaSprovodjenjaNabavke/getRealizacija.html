@@ -1,0 +1,41 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+{% spaceless %}
+    <div class="row">
+        <table border="2px">
+            <tr>
+                <th>Aproprijacija</th>
+                <th>Opis</th>
+                <th>Broj</th>
+                <th>Zahtev</th>
+                <th>Odluka</th>
+                <th>Rešenje</th>
+                <th>Izjava</th>
+                <th>Datum direktor</th>
+                <th>Datum ojn</th>
+                <th>Otvaranje ponuda</th>
+            </tr>
+            
+           
+            {% for realizacija_sprovodjenja_nabavke in realizacije %}
+            <tr>        
+                <td>{{ realizacija_sprovodjenja_nabavke.aproprijacija_fk }}</td>
+                <td>{{ realizacija_sprovodjenja_nabavke.opis }}</td>   
+                <td>{{ realizacija_sprovodjenja_nabavke.broj }}</td>
+                <td>{{ realizacija_sprovodjenja_nabavke.zahtev }}</td>
+                <td>{{ realizacija_sprovodjenja_nabavke.odluka }}</td>
+                <td>{{ realizacija_sprovodjenja_nabavke.resenje }}</td>
+                <td>{{ realizacija_sprovodjenja_nabavke.izjava }}</td>
+                <td>{{ realizacija_sprovodjenja_nabavke.datum_direktor }}</td>
+                <td>{{ realizacija_sprovodjenja_nabavke.datum_ojn }}</td>
+                <td>{{ realizacija_sprovodjenja_nabavke.otvaranje_ponuda }}</td>
+            </tr>          
+            {% endfor %}
+            
+        </table>
+        <a>test</a>
+        <button class="btn btn-success" onclick="location.href='{{ BASE }}realizacija-sprovodjenja-nabavke/add'">Dodaj realizaciju</button>
+    </div>
+{% endspaceless %}
+{% endblock %}

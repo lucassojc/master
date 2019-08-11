@@ -1,0 +1,49 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+{% spaceless %}
+    <div class="row">
+        <table border="2px">
+            <tr>
+                <th>Aproprijacija</th>
+                <th>Odeljenje</th>
+                <th>Vrsta predmeta</th>
+                <th>Vrsta postupka</th>
+                <th>Opis</th>
+                <th>Iznos sa pdv-om</th>
+                <th>Iznos bez pdv-a</th>
+                <th>2019</th>
+                <th>2020</th>
+                <th>2021</th>
+                <th>Pokretanje postupka</th>
+                <th>Zaključenje ugovora</th>
+                <th>Izvršenje ugovora</th>
+                <th>Napomena</th>
+                <th>Razlog</th>
+                <th>Kontrolni iznos</th>
+            </tr>
+            {% for plan_javnih_nabavki in planovi %}
+            <tr>
+                <td>{{ plan_javnih_nabavki.aproprijacija_fk }}</td>
+                <td>{{ plan_javnih_nabavki.odeljenje }}</td>
+                <td>{{ plan_javnih_nabavki.vrsta_predmeta }}</td>
+                <td>{{ plan_javnih_nabavki.vrsta_postupka }}</td>
+                <td>{{ plan_javnih_nabavki.opis }}</td>
+                <td>{{ plan_javnih_nabavki.iznos_sa_pdv }}</td>
+                <td>{{ plan_javnih_nabavki.iznos_bez_pdv }}</td>
+                <td>{{ plan_javnih_nabavki.2019 }}</td>
+                <td>{{ plan_javnih_nabavki.2020 }}</td>
+                <td>{{ plan_javnih_nabavki.2021 }}</td>
+                <td>{{ plan_javnih_nabavki.pokretanje_postupka }}</td>
+                <td>{{ plan_javnih_nabavki.zakljucenje_ugovora }}</td>
+                <td>{{ plan_javnih_nabavki.izvrsenje_ugovora }}</td>
+                <td>{{ plan_javnih_nabavki.napomena }}</td>
+                <td>{{ plan_javnih_nabavki.razlog }}</td>
+                <td>{{ plan_javnih_nabavki.kontrolni_iznos }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+{% endspaceless %}
+{% endblock %}

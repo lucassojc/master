@@ -1,0 +1,68 @@
+{% extends "/_global/index.html" %}
+
+{% block main %}
+<div>
+
+
+	<a href="{{ BASE }}relizacija-ugovora">Realizacije ugovora</a>
+
+
+    <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
+        
+
+        <select class="form-control" name="plan_javnih_nabavki_id" id="plan_javnih_nabavki_id">
+            {% for plan_javnih_nabavki in planovi %}
+                <option value="{{ plan_javnih_nabavki.plan_javnih_nabavki_id }}">{{ plan_javnih_nabavki.aproprijacija_fk|escape }}  |  {{ plan_javnih_nabavki.opis|escape }}</option>
+            {% endfor %}
+        </select>
+        
+        <div class="form-group">
+            <label for="broj">broj: </label>
+            <input class="form-control" type="text" id="broj" name="broj" required>
+        </div>
+        <div class="form-group">
+            <label for="suma">suma: </label>
+            <input class="form-control" type="text" id="suma" name="suma" required>
+        </div>
+        <div class="form-group">
+            <label for="dobavljac">dobavljac: </label>
+            <input class="form-control" type="text" id="dobavljac" name="dobavljac" required>
+        </div>
+        <div class="form-group">
+            <label for="trajanje">trajanje: </label>
+            <input class="form-control" type="text" id="trajanje" name="trajanje" required>
+        </div>   
+        <div class="form-group">
+            <label for="realizacija">realizacija: </label>
+            <input class="form-control" type="text" id="realizacija" name="realizacija" required>
+        </div>
+        <div class="form-group">
+            <label for="datum_realizacije">datum_realizacije: </label>
+            <input class="form-control" type="date" id="datum_realizacije" name="datum_realizacije" required>
+        </div>
+        <div class="form-group">
+            <label for="efikasnost">efikasnost: </label>
+            <input class="form-control" type="text" id="efikasnost" name="efikasnost" required>
+        </div>
+        <div class="form-group">
+            <label for="potroseno_planirano">potroseno_planirano: </label>
+            <input class="form-control" type="text" id="potroseno_planirano" name="potroseno_planirano" required>
+        </div>
+        <div class="form-group">
+            <label for="status">status: </label>
+            <input class="form-control" type="text" id="status" name="status" required>
+        </div>
+        <div class="form-group">
+            <label for="napomena">napomena: </label>
+            <input class="form-control" type="text" id="napomena" name="napomena" required>
+        </div>
+        <div class="form-group">
+            <label for="razlog_neizvrsenja">razlog_neizvrsenja: </label>
+            <input class="form-control" type="text" id="razlog_neizvrsenja" name="razlog_neizvrsenja" required>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" type="submit"><i class="fa fa-plus"></i>Dodaj realizaciju</button>
+        </div> 
+    </form>
+</div>
+{% endblock %}

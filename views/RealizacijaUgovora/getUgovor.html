@@ -1,0 +1,47 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+{% spaceless %}
+    <div class="row">
+        <table border="2px">
+            <tr>
+                <th>Aproprijacija</th>
+                <th>Opis</th>
+                <th>Broj</th>
+                <th>Suma</th>
+                <th>Dobavljac</th>
+                <th>Trajanje</th>
+                <th>Realizacija</th>
+                <th>Datum realizacije</th>
+                <th>Efikasnost</th>
+                <th>Potroseno i planirano</th>
+                <th>Status</th>
+                <th>Napomena</th>
+                <th>Razlog neizvrsenja</th>
+            </tr>
+            
+           
+            {% for realizacija_ugovora in ugovori %}
+            <tr>        
+                <td>{{ realizacija_ugovora.aproprijacija_fk }}</td>
+                <td>{{ realizacija_ugovora.opis }}</td>   
+                <td>{{ realizacija_ugovora.broj }}</td>
+                <td>{{ realizacija_ugovora.suma }}</td>
+                <td>{{ realizacija_ugovora.dobavljac }}</td>
+                <td>{{ realizacija_ugovora.trajanje }}</td>
+                <td>{{ realizacija_ugovora.realizacija }}</td>
+                <td>{{ realizacija_ugovora.datum_realizacije }}</td>
+                <td>{{ realizacija_ugovora.efikasnost }}</td>
+                <td>{{ realizacija_ugovora.potroseno_planirano }}</td>
+                <td>{{ realizacija_ugovora.status }}</td>
+                <td>{{ realizacija_ugovora.napomena }}</td>
+                <td>{{ realizacija_ugovora.razlog_neizvrsenja }}</td>
+            </tr>          
+            {% endfor %}
+            
+        </table>
+    </div>
+    <button class="btn btn-success" onclick="location.href='{{ BASE }}realizacija-sprovodjenja-nabavke/add'">Dodaj realizaciju</button>
+
+{% endspaceless %}
+{% endblock %}

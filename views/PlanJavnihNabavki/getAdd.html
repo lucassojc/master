@@ -1,0 +1,94 @@
+{% extends "/_global/index.html" %}
+
+{% block main %}
+<div>
+
+
+	<a href="{{ BASE }}plan-javnih-nabavki">Planovi javnih nabavki</a>
+
+
+    <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
+        
+        <div class="form-group">
+            <select class="form-control" name="aproprijacija_fk" id="aproprijacija_fk">
+                {% for program_poslovanja in programi %}
+                    <option value="{{ program_poslovanja.aproprijacija }}">{{ program_poslovanja.aproprijacija|escape }} | {{ program_poslovanja.opis|escape }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="odeljenje">odeljenje: </label>
+            <input class="form-control" type="text" id="odeljenje" name="odeljenje" required>
+        </div>
+        <div class="form-group">
+            <label for="vrsta_predmeta">vrsta_predmeta: </label>
+
+            <select class="form-control" name="vrsta_predmeta" id="vrsta_predmeta">
+                <option value="Dobra">Dobra</option>
+                <option value="Usluge">Usluge</option>
+                <option value="Radovi">Radovi</option>
+            </select>            
+        </div>
+        <div class="form-group">
+            <label for="vrsta_postupka">vrsta_postupka: </label>
+
+            <select class="form-control" name="vrsta_postupka" id="vrsta_postupka">
+                <option value="Otvoreni postupak">Otvoreni postupak</option>
+                <option value="Nabavka male vrednosti">Nabavka male vrednosti</option>
+                <option value="Pregovarački postupak">Pregovarački postupak</option>
+            </select>            
+        </div>
+        <div class="form-group">
+            <label for="opis">opis: </label>
+            <textarea class="form-control" id="opis" name="opis" rows="5" required></textarea>
+        </div>   
+        <!-- <div class="form-group">
+            <label for="iznos_sa_pdv">iznos_sa_pdv: </label>
+            <input class="form-control" type="text" id="iznos_sa_pdv" name="iznos_sa_pdv" required>
+        </div> -->
+        <div class="form-group">
+            <label for="iznos_bez_pdv">iznos_bez_pdv: </label>
+            <input class="form-control" type="text" id="iznos_bez_pdv" name="iznos_bez_pdv" required>
+        </div>
+        <div class="form-group">
+            <label for="godina_2019">2019: </label>
+            <input class="form-control" type="text" id="godina_2019" name="godina_2019">
+        </div>
+        <div class="form-group">
+            <label for="godina_2020">2020: </label>
+            <input class="form-control" type="text" id="godina_2020" name="godina_2020">
+        </div>
+        <div class="form-group">
+            <label for="godina_2021">2021: </label>
+            <input class="form-control" type="text" id="godina_2021" name="godina_2021">
+        </div>
+        <div class="form-group">
+            <label for="pokretanje_postupka">pokretanje_postupka: </label>
+            <input class="form-control" type="date" id="pokretanje_postupka" name="pokretanje_postupka" required>
+        </div>
+        <div class="form-group">
+            <label for="zakljucenje_ugovora">zakljucenje_ugovora: </label>
+            <input class="form-control" type="date" id="zakljucenje_ugovora" name="zakljucenje_ugovora" required>
+        </div>
+        <div class="form-group">
+            <label for="izvrsenje_ugovora">izvrsenje_ugovora: </label>
+            <input class="form-control" type="date" id="izvrsenje_ugovora" name="izvrsenje_ugovora" required>
+        </div>
+        <div class="form-group">
+            <label for="napomena">napomena: </label>
+            <textarea class="form-control" id="napomena" name="napomena" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="razlog">razlog: </label>
+            <textarea class="form-control" id="razlog" name="razlog" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="kontrolni_iznos">kontrolni_iznos: </label>
+            <input class="form-control" type="text" id="kontrolni_iznos" name="kontrolni_iznos" required>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" type="submit"><i class="fa fa-plus"></i>Dodaj plan</button>
+        </div> 
+    </form>
+</div>
+{% endblock %}

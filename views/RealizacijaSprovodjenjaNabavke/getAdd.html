@@ -1,0 +1,56 @@
+{% extends "/_global/index.html" %}
+
+{% block main %}
+<div>
+
+
+	<a href="{{ BASE }}relizacija-sprovodjenja-nabavke">Realizacije sprovodjenja nabavke</a>
+
+
+    <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
+        
+
+        <select class="form-control" name="plan_javnih_nabavki_id" id="plan_javnih_nabavki_id">
+            {% for pjn in planovi %}
+                <option value="{{ pjn.plan_javnih_nabavki_id }}">{{ pjn.aproprijacija_fk|escape }} | {{ pjn.opis|escape }}</option>
+            {% endfor %}
+        </select>
+        
+        <div class="form-group">
+            <label for="broj">broj: </label>
+            <input class="form-control" type="text" id="broj" name="broj" required>
+        </div>
+        <div class="form-group">
+            <label for="zahtev">zahtev: </label>
+            <input class="form-control" type="date" id="zahtev" name="zahtev" required>
+        </div>
+        <div class="form-group">
+            <label for="odluka">odluka: </label>
+            <input class="form-control" type="date" id="odluka" name="odluka" required>
+        </div>
+        <div class="form-group">
+            <label for="resenje">resenje: </label>
+            <input class="form-control" type="date" id="resenje" name="resenje" required>
+        </div>   
+        <div class="form-group">
+            <label for="izjava">izjava: </label>
+            <input class="form-control" type="date" id="izjava" name="izjava" required>
+        </div>
+        <div class="form-group">
+            <label for="datum_direktor">datum_direktor: </label>
+            <input class="form-control" type="date" id="datum_direktor" name="datum_direktor" required>
+        </div>
+        <div class="form-group">
+            <label for="datum_ojn">Datum oglasavanja javne nabavke : </label>
+            <input class="form-control" type="date" id="datum_ojn" name="datum_ojn" required>
+        </div>
+        <div class="form-group">
+            <label for="otvaranje_ponuda">otvaranje_ponuda: </label>
+            <input class="form-control" type="date" id="otvaranje_ponuda" name="otvaranje_ponuda" required>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" type="submit"><i class="fa fa-plus"></i>Dodaj realizaciju</button>
+        </div> 
+    </form>
+</div>
+{% endblock %}
