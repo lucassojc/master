@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Projekat - {% block naslov %}Logovanje{% endblock %}</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ BASE }}assets/libs/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ BASE }}assets/libs/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ BASE }}assets/css/main.css">
+    <body>
+        <div class="row">
+            <form class="login-form" action="{{ BASE }}login" method="POST">
+                <div class="card">
+                    <div class="card-header">
+                        Logovanje
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <select class="form-control" name="username" id="username">
+                                <option value="Admin">Admin</option>
+                                <option value="Kvalitet">Kvalitet</option>
+                                <option value="ITS">ITS</option>
+                                <option value="Baze podataka">Baze podataka</option>
+                                <option value="Održavanje sistema">Održavanje UIS</option>
+                                <option value="Informativni centar">Informativni centar</option>
+                                <option value="BZR">BZR</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="login-password-label" for="input_password">Password:</label>
+                            <input class="form-control" type="password" id="password" name="password" required placeholder="Unsite svoju lozinku.">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-blue" type="submit">
+                            Prijava
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>      
+
+    <footer class="site-footer">
+        &copy; 2019 - Projekat javnih nabavki - Putevi Srbije - Master rad - Luka Jovanovic 
+    </footer>
+        <script src="{{BASE}}assets/js/validate-form.js"></script>
+        <script src="{{BASE}}assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="{{BASE}}assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

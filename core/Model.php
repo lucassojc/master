@@ -3,7 +3,7 @@
 
 
     abstract class Model {
-        private $dbc;
+        public $dbc;
 
         final public function __construct(DatabaseConnection &$dbc) {
             $this->dbc = $dbc;
@@ -174,38 +174,4 @@
             $prep = $this->dbc->getConnection()->prepare($sql);
             return $prep->execute([$id]);
         }
-
-        public function innerJoinRealizacija() {
-            $sql = 'SELECT * FROM plan_javnih_nabavki INNER JOIN realizacija_sprovodjenja_nabavke ON plan_javnih_nabavki.plan_javnih_nabavki_id = realizacija_sprovodjenja_nabavke.plan_javnih_nabavki_id ';
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute();
-            $items = [];
-            if ($res) {
-                $items = $prep->fetchAll(\PDO::FETCH_OBJ);
-            }
-            return $items;
-        }
-
-        public function innerJoinUgovor() {
-            $sql = 'SELECT * FROM plan_javnih_nabavki INNER JOIN realizacija_ugovora ON plan_javnih_nabavki.plan_javnih_nabavki_id = realizacija_ugovora.plan_javnih_nabavki_id ';
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute();
-            $items = [];
-            if ($res) {
-                $items = $prep->fetchAll(\PDO::FETCH_OBJ);
-            }
-            return $items;
-        }
-
-        public function innerJoinPlan() {
-            $sql = 'SELECT * FROM plan_javnih_nabavki INNER JOIN program_poslovanja ON plan_javnih_nabavki.aproprijacija_fk = program_poslovanja.aproprijacija ';
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute();
-            $items = [];
-            if ($res) {
-                $items = $prep->fetchAll(\PDO::FETCH_OBJ);
-            }
-            return $items;
-        }
-
     }

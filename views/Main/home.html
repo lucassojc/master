@@ -2,12 +2,19 @@
 
 {% block main %}
 {% spaceless %}
-    <p>Ulogovani ste kao: {{admin.username}}</p>
-    
-    <a href="{{BASE}}program-poslovanja/add">Program poslovanja add</a> </br>
-    <a href="{{BASE}}plan-javnih-nabavki/add">Plan javnih nabavki add</a> </br>
-    <a href="{{BASE}}realizacija-sprovodjenja-nabavke/add">Realizacija sprovodjenja nabavke add</a> </br>
-    <a href="{{BASE}}realizacija-ugovora/add">Realizacija ugovora add</a> </br>
+<div class="img">
+    <h2 class="poruka">Dobrodošli ! Ulogovani ste kao : <span class="ps-red">{{admin.username}}</span></h2>
+    <div class="uputstva">
+        <h3 class="ps-red text-center">Obaveštenja:</h3>
+        <ol class="ps-blue font-weight-bold">
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius diam non nulla placerat tincidunt. Vestibulum facilisis vulputate odio id sagittis.</li>
+            <li>Vivamus sed rutrum tortor, non mattis nulla. In porta aliquam sapien, et aliquam diam mattis sit amet. Mauris felis ex, lobortis eget magna vitae, porta varius urna.</li>
+            <li>Integer dui lacus, fermentum sed metus mollis, posuere porttitor mi. Aenean molestie felis sit amet orci sagittis tempor. Nulla auctor eget tellus maximus feugiat.</li>
+        </ol>
+        <p class="ps-red font-weight-bold">{{ message }}</p>
+    </div>
 
+    
+</div>
 {% endspaceless %}
 {% endblock %}

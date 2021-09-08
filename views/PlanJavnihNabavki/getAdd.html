@@ -4,90 +4,80 @@
 <div>
 
 
-	<a href="{{ BASE }}plan-javnih-nabavki">Planovi javnih nabavki</a>
+	<a class="btn btn-blue" href="{{ BASE }}plan-javnih-nabavki">Nazad</a>
 
 
     <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
         
         <div class="form-group">
-            <select class="form-control" name="aproprijacija_fk" id="aproprijacija_fk">
+            <select class="form-control" name="program_poslovanja_id" id="program_poslovanja_id">
                 {% for program_poslovanja in programi %}
-                    <option value="{{ program_poslovanja.aproprijacija }}">{{ program_poslovanja.aproprijacija|escape }} | {{ program_poslovanja.opis|escape }}</option>
+                    <option value="{{ program_poslovanja.program_poslovanja_id }}">{{ program_poslovanja.program_poslovanja_id|escape }} | {{ program_poslovanja.opis_pp|escape }}</option>
                 {% endfor %}
             </select>
         </div>
         <div class="form-group">
-            <label for="odeljenje">odeljenje: </label>
-            <input class="form-control" type="text" id="odeljenje" name="odeljenje" required>
-        </div>
-        <div class="form-group">
-            <label for="vrsta_predmeta">vrsta_predmeta: </label>
+            <label for="vrsta_predmeta">Врста предмета: </label>
 
             <select class="form-control" name="vrsta_predmeta" id="vrsta_predmeta">
-                <option value="Dobra">Dobra</option>
-                <option value="Usluge">Usluge</option>
-                <option value="Radovi">Radovi</option>
+                <option value="Добра">Добра</option>
+                <option value="Услуге">Услуге</option>
+                <option value="Радови">Радови</option>
             </select>            
         </div>
         <div class="form-group">
-            <label for="vrsta_postupka">vrsta_postupka: </label>
+            <label for="vrsta_postupka">Врста поступка: </label>
 
             <select class="form-control" name="vrsta_postupka" id="vrsta_postupka">
-                <option value="Otvoreni postupak">Otvoreni postupak</option>
-                <option value="Nabavka male vrednosti">Nabavka male vrednosti</option>
-                <option value="Pregovarački postupak">Pregovarački postupak</option>
+                <option value="Отворени поступак">Отворени поступак</option>
+                <option value="Набавка мале вредности">Набавка мале вредности</option>
+                <option value="Преговарачки поступак">Преговарачки поступак</option>
             </select>            
         </div>
         <div class="form-group">
-            <label for="opis">opis: </label>
-            <textarea class="form-control" id="opis" name="opis" rows="5" required></textarea>
+            <label for="opis_pjn">Предмет набавке: </label>
+            <textarea class="form-control" id="opis_pjn" name="opis_pjn" rows="5" required></textarea>
         </div>   
-        <!-- <div class="form-group">
-            <label for="iznos_sa_pdv">iznos_sa_pdv: </label>
-            <input class="form-control" type="text" id="iznos_sa_pdv" name="iznos_sa_pdv" required>
-        </div> -->
         <div class="form-group">
-            <label for="iznos_bez_pdv">iznos_bez_pdv: </label>
-            <input class="form-control" type="text" id="iznos_bez_pdv" name="iznos_bez_pdv" required>
+            <label for="iznos_bez_pdv">Процењена вредност без ПДВ-а: </label>
+            <input class="form-control" type="text" id="iznos_bez_pdv" name="iznos_bez_pdv" pattern="^[0-9]+$" title="Унесите износ у формату броја без тачки и зареза" required>
         </div>
         <div class="form-group">
-            <label for="godina_2019">2019: </label>
-            <input class="form-control" type="text" id="godina_2019" name="godina_2019">
+            <label for="godina_2019">Вредност за 2019: </label>
+            <input class="form-control" type="text" id="godina_2019" name="godina_2019" pattern="^[0-9]+$" title="Унесите износ у формату броја без тачки и зареза">
         </div>
         <div class="form-group">
-            <label for="godina_2020">2020: </label>
-            <input class="form-control" type="text" id="godina_2020" name="godina_2020">
+            <label for="godina_2020">Вредност за 2020: </label>
+            <input class="form-control" type="text" id="godina_2020" name="godina_2020" pattern="^[0-9]+$" title="Унесите износ у формату броја без тачки и зареза">
         </div>
         <div class="form-group">
-            <label for="godina_2021">2021: </label>
-            <input class="form-control" type="text" id="godina_2021" name="godina_2021">
+            <label for="godina_2021">Вредност за 2021: </label>
+            <input class="form-control" type="text" id="godina_2021" name="godina_2021" pattern="^[0-9]+$" title="Унесите износ у формату броја без тачки и зареза">
+        </div>
+        <p id="error-message"></p>
+        <div class="form-group">
+            <label for="postupak_pokrenut_at">Покретање поступка: </label>
+            <input class="form-control" type="date" id="postupak_pokrenut_at" name="postupak_pokrenut_at" required>
         </div>
         <div class="form-group">
-            <label for="pokretanje_postupka">pokretanje_postupka: </label>
-            <input class="form-control" type="date" id="pokretanje_postupka" name="pokretanje_postupka" required>
+            <label for="ugovor_zakljucen_at">Закључење уговора: </label>
+            <input class="form-control" type="date" id="ugovor_zakljucen_at" name="ugovor_zakljucen_at" required>
         </div>
         <div class="form-group">
-            <label for="zakljucenje_ugovora">zakljucenje_ugovora: </label>
-            <input class="form-control" type="date" id="zakljucenje_ugovora" name="zakljucenje_ugovora" required>
+            <label for="ugovor_izvrsen_at">Извршење уговора: </label>
+            <input class="form-control" type="date" id="ugovor_izvrsen_at" name="ugovor_izvrsen_at" required>
         </div>
         <div class="form-group">
-            <label for="izvrsenje_ugovora">izvrsenje_ugovora: </label>
-            <input class="form-control" type="date" id="izvrsenje_ugovora" name="izvrsenje_ugovora" required>
-        </div>
+                <label for="razlog">Разлог и оправданост набавке: </label>
+                <textarea class="form-control" id="razlog" name="razlog" rows="5" ></textarea>
+            </div>
         <div class="form-group">
-            <label for="napomena">napomena: </label>
-            <textarea class="form-control" id="napomena" name="napomena" rows="5" required></textarea>
+            <label for="napomena">Начин утврђивања процењене вредности (напомена): </label>
+            <textarea class="form-control" id="napomena" name="napomena" rows="5" ></textarea>
         </div>
+
         <div class="form-group">
-            <label for="razlog">razlog: </label>
-            <textarea class="form-control" id="razlog" name="razlog" rows="5" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="kontrolni_iznos">kontrolni_iznos: </label>
-            <input class="form-control" type="text" id="kontrolni_iznos" name="kontrolni_iznos" required>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-success" type="submit"><i class="fa fa-plus"></i>Dodaj plan</button>
+            <button class="btn btn-red" type="submit"><i class="fa fa-plus"></i> Dodaj plan</button>
         </div> 
     </form>
 </div>

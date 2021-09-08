@@ -3,39 +3,44 @@
 {% block main %}
 {% spaceless %}
     <div class="row">
-        <table border="2px">
+        <button class="btn btn-blue" onclick="location.href='{{ BASE }}realizacija-sprovodjenja-nabavke/add'">Dodaj realizaciju</button>
+        <table class="table-rsn-head table-bordered table-hover">
             <tr>
-                <th>Aproprijacija</th>
-                <th>Opis</th>
-                <th>Broj</th>
-                <th>Zahtev</th>
-                <th>Odluka</th>
-                <th>Rešenje</th>
-                <th>Izjava</th>
-                <th>Datum direktor</th>
-                <th>Datum ojn</th>
-                <th>Otvaranje ponuda</th>
+                <th class="rb" rowspan="2"><span class="ps-red">Рб</span></th>
+                <th class="konto">Конто / позиција</th>
+                <th class="predmet" colspan="5">Предмет набавке</th>
+                <th class="broj">Број набавке у одлуци</th>
             </tr>
-            
-           
-            {% for realizacija_sprovodjenja_nabavke in realizacije %}
-            <tr>        
-                <td>{{ realizacija_sprovodjenja_nabavke.aproprijacija_fk }}</td>
-                <td>{{ realizacija_sprovodjenja_nabavke.opis }}</td>   
-                <td>{{ realizacija_sprovodjenja_nabavke.broj }}</td>
-                <td>{{ realizacija_sprovodjenja_nabavke.zahtev }}</td>
-                <td>{{ realizacija_sprovodjenja_nabavke.odluka }}</td>
-                <td>{{ realizacija_sprovodjenja_nabavke.resenje }}</td>
-                <td>{{ realizacija_sprovodjenja_nabavke.izjava }}</td>
-                <td>{{ realizacija_sprovodjenja_nabavke.datum_direktor }}</td>
-                <td>{{ realizacija_sprovodjenja_nabavke.datum_ojn }}</td>
-                <td>{{ realizacija_sprovodjenja_nabavke.otvaranje_ponuda }}</td>
-            </tr>          
-            {% endfor %}
-            
+            <tr>
+                <th class="zahtev">Захтев за покретање</th>
+                <th class="odluka">Одлука о покретању</th>
+                <th class="resenje">Решење о образовању комисије</th>
+                <th class="izjava">Изјава о одсуству сукоба интереса</th>
+                <th class="dostavljanje">Достављање конкурсне документације</th>
+                <th class="slanje">Датум слања техничке документације ОЈН</th>
+                <th class="otvaranje">Отварање понуда</th>
+            </tr>
         </table>
-        <a>test</a>
-        <button class="btn btn-success" onclick="location.href='{{ BASE }}realizacija-sprovodjenja-nabavke/add'">Dodaj realizaciju</button>
+
+        <table class="table-rsn table-bordered">
+            {% for realizacija_sprovodjenja_nabavke in realizacije %}
+            <tr>
+                <td class="rb ps-red" rowspan="2">{{ realizacija_sprovodjenja_nabavke.realizacija_sprovodjenja_nabavke_id }}</td>
+                <td class="konto">{{ realizacija_sprovodjenja_nabavke.program_poslovanja_id }}</td>
+                <td class="predmet" colspan="5">{{ realizacija_sprovodjenja_nabavke.opis_pjn }}</td>   
+                <td class="broj">{{ realizacija_sprovodjenja_nabavke.broj }}</td>
+            </tr>
+            <tr>
+                <td class="zahtev">{{ realizacija_sprovodjenja_nabavke.zahtev_pokrenut_at|date("d-m-Y") }}</td>
+                <td class="odluka">{{ realizacija_sprovodjenja_nabavke.odluka_donesena_at|date("d-m-Y") }}</td>
+                <td class="resenje">{{ realizacija_sprovodjenja_nabavke.resenje_at|date("d-m-Y") }}</td>
+                <td class="izjava">{{ realizacija_sprovodjenja_nabavke.izjava_at|date("d-m-Y") }}</td>
+                <td class="dostavljanje">{{ realizacija_sprovodjenja_nabavke.dokumentacija_direktor_at|date("d-m-Y") }}</td>
+                <td class="slanje">{{ realizacija_sprovodjenja_nabavke.dokumentacija_ojn_at|date("d-m-Y") }}</td>
+                <td class="otvaranje">{{ realizacija_sprovodjenja_nabavke.ponuda_otvorena_at|date("d-m-Y") }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 {% endspaceless %}
 {% endblock %}

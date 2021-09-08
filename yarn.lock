@@ -12,6 +12,11 @@ font-awesome@^4.7.0:
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
   integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
 
+jquery-table2excel@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/jquery-table2excel/-/jquery-table2excel-1.1.1.tgz#90e71a6d4a13c4ac20526e24afad5f8622e12b56"
+  integrity sha1-kOcabUoTxKwgUm4kr61fhiLhK1Y=
+
 jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"

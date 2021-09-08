@@ -14,14 +14,27 @@
                 'realizacija_sprovodjenja_nabavke_id'   => new Field((new NumberValidator())->setIntegerLength(10), false),
                 'plan_javnih_nabavki_id'                => new Field((new NumberValidator())->setIntegerLength(10)),
                 'broj'                                  => new Field((new StringValidator())->setMaxLength(128)),
-                'zahtev'                                => new Field((new StringValidator())->setMaxLength(128)),    //date
-                'odluka'                                => new Field((new StringValidator())->setMaxLength(128)),    //date
-                'resenje'                               => new Field((new StringValidator())->setMaxLength(128)),    //date
-                'izjava'                                => new Field((new StringValidator())->setMaxLength(128)),    //date
-                'datum_direktor'                        => new Field((new StringValidator())->setMaxLength(128)),    //date
-                'datum_ojn'                             => new Field((new StringValidator())->setMaxLength(128)),    //date
-                'otvaranje_ponuda'                      => new Field((new StringValidator())->setMaxLength(128)),    //date
+                'zahtev_pokrenut_at'                                => new Field((new StringValidator())->setMaxLength(128)),    //date
+                'odluka_donesena_at'                                => new Field((new StringValidator())->setMaxLength(128)),    //date
+                'resenje_at'                               => new Field((new StringValidator())->setMaxLength(128)),    //date
+                'izjava_at'                                => new Field((new StringValidator())->setMaxLength(128)),    //date
+                'dokumentacija_direktor_at'                         => new Field((new StringValidator())->setMaxLength(128)),    //date
+                'dokumentacija_ojn_at'                             => new Field((new StringValidator())->setMaxLength(128)),    //date
+                'ponuda_otvorena_at'                      => new Field((new StringValidator())->setMaxLength(128)),    //date
                 'administrator_id'                      => new Field((new NumberValidator())->setIntegerLength(10))
             ];
         }
+
+        public function innerJoinRealizacija() {
+            $sql = 'SELECT * FROM plan_javnih_nabavki INNER JOIN realizacija_sprovodjenja_nabavke ON plan_javnih_nabavki.plan_javnih_nabavki_id = realizacija_sprovodjenja_nabavke.plan_javnih_nabavki_id ';
+            $prep = $this->dbc->getConnection()->prepare($sql);
+            $res = $prep->execute();
+            $items = [];
+            if ($res) {
+                $items = $prep->fetchAll(\PDO::FETCH_OBJ);
+            }
+            return $items;
+        }
+
+
     }

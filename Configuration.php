@@ -1,11 +1,11 @@
 <?php
     final class Configuration {
-        const BASE = 'http://localhost/ps/';
+        const BASE = 'http://localhost/planJavnihNabavki/';
         
         const DATABASE_HOST = 'localhost';
         const DATABASE_USER = 'root';
         const DATABASE_PASS = '';
-        const DATABASE_NAME = 'ps';
+        const DATABASE_NAME = 'pjn';
 
         const SESSION_STORAGE = '\\App\\Core\\Session\\FileSessionStorage';
         const SESSION_STORAGE_DATA = [ './sessions/' ];
@@ -15,4 +15,8 @@
         const FINGERPRINT_PROVIDER_METHOD  = 'getInstance';
         const FINGERPRINT_PROVIDER_ARGS = [ 'SERVER' ];
 
-        const UPLOAD_DIR = 'assets/uploads/';    }
+        const UPLOAD_DIR = 'assets/uploads/';
+        const TEMP_DIR = 'assets/downloads/';
+		const EXCEL_PLAN_HEADER_OFFSET = 1;
+		const EXCEL_PLAN_FILENAME = 'Plan-javnih-nabavki';
+	}

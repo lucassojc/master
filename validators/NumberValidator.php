@@ -53,7 +53,7 @@
                 $pattern .= '\-?';
             }
 
-            $pattern .= '[1-9][0-9]{0,' . ($this->integerLength-1) . '}';
+            $pattern .= '[0-9][0-9]{0,' . ($this->integerLength-1) . '}';
 
             if ($this->isReal === true) {
                 $pattern .= '\.[0-9]{0,' .  $this->maxDecimalDigits . '}';

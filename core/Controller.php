@@ -10,6 +10,7 @@
         private $data = [];
 
         public function __pre() {
+            
         }
 
         final public function __construct(DatabaseConnection &$dbc) {

@@ -3,47 +3,156 @@
 {% block main %}
 {% spaceless %}
     <div class="row">
-        <table border="2px">
+        <button class="btn btn-blue" onclick="location.href='{{ BASE }}plan-javnih-nabavki/add'">Dodaj plan</button>
+        <a class="btn btn-red" href="{{ BASE }}plan-javnih-nabavki/download" target="_blank">Preuzmi</a>
+        <table id="table" class="table-pjn table-bordered table-hover">
             <tr>
-                <th>Aproprijacija</th>
-                <th>Odeljenje</th>
-                <th>Vrsta predmeta</th>
-                <th>Vrsta postupka</th>
-                <th>Opis</th>
-                <th>Iznos sa pdv-om</th>
-                <th>Iznos bez pdv-a</th>
-                <th>2019</th>
-                <th>2020</th>
-                <th>2021</th>
-                <th>Pokretanje postupka</th>
-                <th>Zaključenje ugovora</th>
-                <th>Izvršenje ugovora</th>
-                <th>Napomena</th>
-                <th>Razlog</th>
-                <th>Kontrolni iznos</th>
+                <th class="rb" rowspan="2"><span class="ps-red">Рб</span></th>
+                <th class="opis" rowspan="2">Предмет набавке</th>
+                <th class="vrednost" rowspan="2">Процењена вредност без ПДВ-а (укупна, по годинама)</th>
+                <th class="planirano" colspan="3">Планирана средства у буџету / фин.плану</th>
+                <th class="postupak" rowspan="2">Врста поступка</th>
+                <th class="datum" colspan="3">Оквирни датум</th>
             </tr>
-            {% for plan_javnih_nabavki in planovi %}
             <tr>
-                <td>{{ plan_javnih_nabavki.aproprijacija_fk }}</td>
-                <td>{{ plan_javnih_nabavki.odeljenje }}</td>
-                <td>{{ plan_javnih_nabavki.vrsta_predmeta }}</td>
-                <td>{{ plan_javnih_nabavki.vrsta_postupka }}</td>
-                <td>{{ plan_javnih_nabavki.opis }}</td>
-                <td>{{ plan_javnih_nabavki.iznos_sa_pdv }}</td>
-                <td>{{ plan_javnih_nabavki.iznos_bez_pdv }}</td>
-                <td>{{ plan_javnih_nabavki.2019 }}</td>
-                <td>{{ plan_javnih_nabavki.2020 }}</td>
-                <td>{{ plan_javnih_nabavki.2021 }}</td>
-                <td>{{ plan_javnih_nabavki.pokretanje_postupka }}</td>
-                <td>{{ plan_javnih_nabavki.zakljucenje_ugovora }}</td>
-                <td>{{ plan_javnih_nabavki.izvrsenje_ugovora }}</td>
-                <td>{{ plan_javnih_nabavki.napomena }}</td>
-                <td>{{ plan_javnih_nabavki.razlog }}</td>
-                <td>{{ plan_javnih_nabavki.kontrolni_iznos }}</td>
+                <th class="bezpdv">без ПДВ-а</th>
+                <th class="sapdv">са ПДВ-ом</th>
+                <th class="konto">Конто / позиција</th>
+                <th class="pokretanje">Покретање поступка</th>
+                <th class="zakljucenje">Закључење уговора</th>
+                <th class="izvrsenje">Извршење уговора</th>
+            </tr>
+            <tr>
+                <th colspan="2">Укупно</th>
+                <th>{{sum|number_format(0, '.', '.')}}</th>
+                <th colspan="7"></th>
+            </tr>
+            <tr>
+                <td colspan="10">&nbsp</td>
+            </tr>
+            <tr>
+                <th colspan="2">добра</th>
+                <th>{{dobraSum|number_format(0, '.', '.')}}</th>
+                <th colspan="7"></th>
+            </tr>
+            {% for plan_javnih_nabavki in dobra %}
+            <tr>
+                <td rowspan="3" class="rb ps-red bg-light">{{ plan_javnih_nabavki.plan_javnih_nabavki_id }}</td>
+                <td class="opis">{{ plan_javnih_nabavki.opis_pjn }}</td>
+                <td class="vrednost">
+                    {{ plan_javnih_nabavki.iznos_bez_pdv|number_format(0, '.', '.') }} <br>
+                    2019-{{ plan_javnih_nabavki.godina_2019|number_format(0, '.', '.') }} <br>
+                    2020-{{ plan_javnih_nabavki.godina_2020|number_format(0, '.', '.') }} <br>
+                    2021-{{ plan_javnih_nabavki.godina_2021|number_format(0, '.', '.') }}
+                </td>
+                <td class="bezpdv">{{ plan_javnih_nabavki.godina_2019|number_format(0, '.', '.') }}</td>
+                <td class="sapdv">{{ plan_javnih_nabavki.iznos_sa_pdv|number_format(0, '.', '.') }}</td>
+                <td class="konto">{{ plan_javnih_nabavki.konto }}</td>
+                <td class="postupak">{{ plan_javnih_nabavki.vrsta_postupka }}</td>
+                <td class="pokretanje">{{ plan_javnih_nabavki.postupak_pokrenut_at|date("d-m-Y")}}</td>
+                <td class="zakljucenje">{{ plan_javnih_nabavki.ugovor_zakljucen_at|date("d-m-Y")}}</td>
+                <td class="izvrsenje">{{ plan_javnih_nabavki.ugovor_izvrsen_at|date("d-m-Y")}}</td>
+            </tr>
+            <tr>
+                <th>Разлог и оправданост набавке</th>
+                <td colspan="7">{{ plan_javnih_nabavki.razlog }}</td>
+                <td class="edit-button" rowspan="2">
+					{% if administratorId == plan_javnih_nabavki.administrator_id %}
+						<a class="edit-button" href="{{ BASE }}plan-javnih-nabavki/edit/{{ plan_javnih_nabavki.plan_javnih_nabavki_id }}">
+							<i class="fa fa-edit"></i>
+						</a>
+					{% else %}
+						/
+					{% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Начин утврђивања процењене вредности</th>
+                <td colspan="7">{{ plan_javnih_nabavki.napomena }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="2">Услуге</th>
+                <th>{{uslugeSum|number_format(0, '.', '.')}}</th>
+                <th colspan="7"></th>
+            </tr>
+            {% for plan_javnih_nabavki in usluge %}
+            <tr>
+                <td rowspan="3" class="rb ps-red">{{ plan_javnih_nabavki.plan_javnih_nabavki_id }}</td>
+                <td class="opis">{{ plan_javnih_nabavki.opis_pjn }}</td>
+                <td class="vrednost">
+                    {{ plan_javnih_nabavki.iznos_bez_pdv|number_format(0, '.', '.') }} <br>
+                    2019-{{ plan_javnih_nabavki.godina_2019|number_format(0, '.', '.') }} <br>
+                    2020-{{ plan_javnih_nabavki.godina_2020|number_format(0, '.', '.') }} <br>
+                    2021-{{ plan_javnih_nabavki.godina_2021|number_format(0, '.', '.') }}
+                </td>
+                <td class="bezpdv">{{ plan_javnih_nabavki.godina_2019|number_format(0, '.', '.') }}</td>
+                <td class="sapdv">{{ plan_javnih_nabavki.iznos_sa_pdv|number_format(0, '.', '.') }}</td>
+                <td class="konto">{{ plan_javnih_nabavki.konto }}</td>
+                <td class="postupak">{{ plan_javnih_nabavki.vrsta_postupka }}</td>
+                <td class="pokretanje">{{ plan_javnih_nabavki.postupak_pokrenut_at|date("d-m-Y")}}</td>
+                <td class="zakljucenje">{{ plan_javnih_nabavki.ugovor_zakljucen_at|date("d-m-Y")}}</td>
+                <td class="izvrsenje">{{ plan_javnih_nabavki.ugovor_izvrsen_at|date("d-m-Y")}}</td>
+            </tr>
+            <tr>
+                <th>Разлог и оправданост набавке</th>
+                <td colspan="7">{{ plan_javnih_nabavki.razlog }}</td>
+                <td class="edit-button" rowspan="2">
+                    {% if administratorId == plan_javnih_nabavki.administrator_id %}
+                    <a class="edit-button" href="{{ BASE }}plan-javnih-nabavki/edit/{{ plan_javnih_nabavki.plan_javnih_nabavki_id }}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+					{% else %}
+						/
+					{% endif %}
+                </td>    
+            </tr>
+            <tr>
+                <th>Начин утврђивања процењене вредности</th>
+                <td colspan="7">{{ plan_javnih_nabavki.napomena }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="2">Радови</th>
+                <th>{{radoviSum|number_format(0, '.', '.')}}</th>
+                <th colspan="7"></th>
+            </tr>
+            {% for plan_javnih_nabavki in radovi %}
+            <tr>
+                <td rowspan="3" class="rb ps-red">{{ plan_javnih_nabavki.plan_javnih_nabavki_id }}</td>
+                <td class="opis">{{ plan_javnih_nabavki.opis_pjn }}</td>
+                <td class="vrednost">
+                    {{ plan_javnih_nabavki.iznos_bez_pdv|number_format(0, '.', '.') }} <br>
+                    2019-{{ plan_javnih_nabavki.godina_2019|number_format(0, '.', '.') }} <br>
+                    2020-{{ plan_javnih_nabavki.godina_2020|number_format(0, '.', '.') }} <br>
+                    2021-{{ plan_javnih_nabavki.godina_2021|number_format(0, '.', '.') }}
+                </td>
+                <td class="bezpdv">{{ plan_javnih_nabavki.godina_2019|number_format(0, '.', '.') }}</td>
+                <td class="sapdv">{{ plan_javnih_nabavki.iznos_sa_pdv|number_format(0, '.', '.') }}</td>
+                <td class="konto">{{ plan_javnih_nabavki.konto }}</td>
+                <td class="postupak">{{ plan_javnih_nabavki.vrsta_postupka }}</td>
+                <td class="pokretanje">{{ plan_javnih_nabavki.postupak_pokrenut_at|date("d-m-Y")}}</td>
+                <td class="zakljucenje">{{ plan_javnih_nabavki.ugovor_zakljucen_at|date("d-m-Y")}}</td>
+                <td class="izvrsenje">{{ plan_javnih_nabavki.ugovor_izvrsen_at|date("d-m-Y")}}</td>
+            </tr>
+            <tr>
+                <th>Разлог и оправданост набавке</th>
+                <td colspan="7">{{ plan_javnih_nabavki.razlog }}</td>
+                <td class="edit-button" rowspan="2">
+                    {% if administratorId == plan_javnih_nabavki.administrator_id %}
+                    <a class="edit-button" href="{{ BASE }}plan-javnih-nabavki/edit/{{ plan_javnih_nabavki.plan_javnih_nabavki_id }}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+					{% else %}
+						/
+					{% endif %}
+                </td>    
+            </tr>
+            <tr>
+                <th>Начин утврђивања процењене вредности</th>
+                <td colspan="7">{{ plan_javnih_nabavki.napomena }}</td>
             </tr>
             {% endfor %}
         </table>
-        
-    </div>
 {% endspaceless %}
 {% endblock %}

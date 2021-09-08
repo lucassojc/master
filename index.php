@@ -8,7 +8,6 @@
     use App\Core\DatabaseConnection;
     use App\Core\Router;
     use App\Controllers\MainController;
-    use App\Core\ApiController;
     use App\Core\Session\Session;
 
     $databaseConfiguration = new DatabaseConfiguration(
@@ -72,6 +71,7 @@
         "cache" => "./twig-cache",
         "auto_reload" => true  // true samo u toku razvoja ! 
     ]);
+    $twig->getExtension(\Twig\Extension\CoreExtension::class)->setNumberFormat(0, '.', '.');
 
     $data['BASE'] = Configuration::BASE;
 

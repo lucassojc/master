@@ -1,37 +1,23 @@
 {% extends "_global/index.html" %}
 
 {% block main %}
-{% spaceless %}
     <div class="row">
-        <table id="table" border="2px">
+        <button class="btn btn-blue" onclick="location.href='{{ BASE }}program-poslovanja/add'">Dodaj program</button>
+        <table class="table-pp table-bordered table-hover">
             <tr>
-                <th>Aproprijacija</th>
-                <th>Opis</th>
-                <th>Iznos</th>
+                <th class="rb"><span class="ps-red">Рб</span></th>
+                <th class="konto">Конто / Позиција</th>
+                <th class="opis">Опис</th>
+                <th class="iznos">Износ</th>
             </tr>
             {% for program_poslovanja in programi %}
             <tr>
-                <td>{{ program_poslovanja.aproprijacija }}</td>
-                <td>{{ program_poslovanja.opis }}</td>
-                <td>{{ program_poslovanja.iznos }}</td>
+                <td class="rb bg-light text-center"><a class="edit ps-red" href="{{ BASE }}program-poslovanja/edit/{{ program_poslovanja.program_poslovanja_id }}">{{ program_poslovanja.program_poslovanja_id }}</a></td>
+                <td class="konto">{{ program_poslovanja.konto }}</td>
+                <td class="opis">{{ program_poslovanja.opis_pp }}</td>
+                <td class="iznos">{{ program_poslovanja.iznos|number_format(0, '.', '.') }}</td>
             </tr>
             {% endfor %}
         </table>
-
-        <button class="btn">Stampaj</button>
-        
     </div>
-
-    <script>
-        $('.btn').click(function(){
-            var printme = document.getElementById('table');
-            var wme = window.open("", "", "width=900, height=700");
-            wme.document.write(printme.outerHTML);
-            wme.document.close();
-            wme.focus();
-            wme.print();
-            wme.close();
-        })
-    </script>
-{% endspaceless %}
 {% endblock %}

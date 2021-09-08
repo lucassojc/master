@@ -1,0 +1,82 @@
+{% extends "/_global/index.html" %}
+
+{% block main %}
+<div>
+
+
+	<a class="btn btn-blue" href="{{ BASE }}plan-javnih-nabavki">Nazad</a>
+
+
+    <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
+        
+        <div class="form-group">
+            <select class="form-control" name="program_poslovanja_id" id="program_poslovanja_id">
+                {% for program_poslovanja in programi %}
+                    <option value="{{ program_poslovanja.program_poslovanja_id }}" {% if program_poslovanja.program_poslovanja_id == plan.program_poslovanja_id %} selected {% endif %}>{{ program_poslovanja.program_poslovanja_id}} | {{ program_poslovanja.opis_pp }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="vrsta_predmeta">Врста предмета:</label>
+            <select class="form-control" name="vrsta_predmeta" id="vrsta_predmeta" size="4">
+                <option value="Добра" {% if plan.vrsta_predmeta == "Добра" %} selected {% endif %} >Добра</option>
+                <option value="Услуге" {% if plan.vrsta_predmeta == "Услуге" %} selected {% endif %} >Услуге</option>
+                <option value="Радови" {% if plan.vrsta_predmeta == "Радови" %} selected {% endif %} >Радови</option>
+            </select>            
+        </div>
+        <div class="form-group">
+            <label for="vrsta_postupka">Врста поступка:</label>
+            <select class="form-control" name="vrsta_postupka" id="vrsta_postupka" size="3">
+                <option value="Отворени поступак" {% if plan.vrsta_postupka == "Отворени поступак" %} selected {% endif %} >Отворени поступак</option>
+                <option value="Набавка мале вредности" {% if plan.vrsta_postupka == "Набавка мале вредности" %} selected {% endif %} >Набавка мале вредности</option>
+                <option value="Преговарачки поступак" {% if plan.vrsta_postupka == "Преговарачки поступак" %} selected {% endif %} >Преговарачки поступак</option>
+            </select>            
+        </div>
+        <div class="form-group">
+            <label for="opis_pjn">Предмет набавке: </label>
+            <textarea class="form-control" id="opis_pjn" name="opis_pjn" rows="5" required> {{ plan.opis_pjn }} </textarea>
+        </div>   
+        <div class="form-group">
+            <label for="iznos_bez_pdv">Процењена вредност без ПДВ-а: </label>
+            <input class="form-control" type="text" id="iznos_bez_pdv" name="iznos_bez_pdv" value="{{ plan.iznos_bez_pdv }}" pattern="^[0-9]+.[0-9]{2}$" title="Унесите износ у формату броја без тачки и зареза" required>
+        </div>
+        <div class="form-group">
+            <label for="godina_2019">Вредност за 2019: </label>
+            <input class="form-control" type="text" id="godina_2019" name="godina_2019" value="{{ plan.godina_2019 }}" pattern="^[0-9]+.[0-9]{2}$" title="Унесите износ у формату броја без тачки и зареза">
+        </div>
+        <div class="form-group">
+            <label for="godina_2020">Вредност за 2020: </label>
+            <input class="form-control" type="text" id="godina_2020" name="godina_2020" value="{{ plan.godina_2020 }}" pattern="^[0-9]+.[0-9]{2}$" title="Унесите износ у формату броја без тачки и зареза">
+        </div>
+        <div class="form-group">
+            <label for="godina_2021">Вредност за 2021: </label>
+            <input class="form-control" type="text" id="godina_2021" name="godina_2021" value="{{ plan.godina_2021 }}" pattern="^[0-9]+.[0-9]{2}$" title="Унесите износ у формату броја без тачки и зареза">
+        </div>
+        <p id="error-message"></p>
+        <div class="form-group">
+            <label for="postupak_pokrenut_at">Покретање поступка: </label>
+            <input class="form-control" type="date" id="postupak_pokrenut_at" name="postupak_pokrenut_at" value="{{ plan.pokretanje_postupka }}" required>
+        </div>
+        <div class="form-group">
+            <label for="ugovor_zakljucen_at">Закључење уговора: </label>
+            <input class="form-control" type="date" id="ugovor_zakljucen_at" name="ugovor_zakljucen_at" value="{{ plan.zakljucenje_ugovora }}" required>
+        </div>
+        <div class="form-group">
+            <label for="ugovor_izvrsen_at">Извршење уговора: </label>
+            <input class="form-control" type="date" id="ugovor_izvrsen_at" name="ugovor_izvrsen_at" value="{{ plan.izvrsenje_ugovora }}" required>
+        </div>
+        <div class="form-group">
+                <label for="razlog">Разлог и оправданост набавке: </label>
+                <textarea class="form-control" id="razlog" name="razlog" rows="5">{{ plan.razlog }}</textarea>
+            </div>
+        <div class="form-group">
+            <label for="napomena">Начин утврђивања процењене вредности (напомена): </label>
+            <textarea class="form-control" id="napomena" name="napomena" rows="5">{{ plan.napomena }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-red" type="submit"><i class="fa fa-edit"></i> Izmeni plan</button>
+        </div> 
+    </form>
+</div>
+{% endblock %}

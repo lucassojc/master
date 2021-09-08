@@ -30,8 +30,22 @@
             }
         }
 
-        public function cleanUp(string $sessionAge) {
-            // TODO: Implement.
+        public function cleanUp(int $sessionAge) {
+            $captchaFolder  = Configuration::SESSION_STORAGE_DATA;
+
+            $fileTypes      = '*.*'; 
+
+            foreach (glob($captchaFolder . $fileTypes) as $Filename) {
+
+                $FileCreationTime = filectime($Filename);
+
+                $FileAge = time() - $FileCreationTime; 
+
+                if ($FileAge > ($sessionAge * 60)){                        
+                    unlink($Filename);
+                }
+            
+            }
         }
 
     }

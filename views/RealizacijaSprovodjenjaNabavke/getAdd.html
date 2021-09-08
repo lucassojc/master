@@ -4,7 +4,7 @@
 <div>
 
 
-	<a href="{{ BASE }}relizacija-sprovodjenja-nabavke">Realizacije sprovodjenja nabavke</a>
+	<a class="btn btn-blue" href="{{ BASE }}realizacija-sprovodjenja-nabavke">Nazad</a>
 
 
     <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
@@ -12,44 +12,44 @@
 
         <select class="form-control" name="plan_javnih_nabavki_id" id="plan_javnih_nabavki_id">
             {% for pjn in planovi %}
-                <option value="{{ pjn.plan_javnih_nabavki_id }}">{{ pjn.aproprijacija_fk|escape }} | {{ pjn.opis|escape }}</option>
+                <option value="{{ pjn.plan_javnih_nabavki_id }}">{{ pjn.program_poslovanja_id|escape }} | {{ pjn.opis_pjn|escape }}</option>
             {% endfor %}
         </select>
         
         <div class="form-group">
-            <label for="broj">broj: </label>
+            <label for="broj">Број набавке у одлуци: </label>
             <input class="form-control" type="text" id="broj" name="broj" required>
         </div>
         <div class="form-group">
-            <label for="zahtev">zahtev: </label>
-            <input class="form-control" type="date" id="zahtev" name="zahtev" required>
+            <label for="zahtev_pokrenut_at">Захтев за покретање: </label>
+            <input class="form-control" type="date" id="zahtev_pokrenut_at" name="zahtev_pokrenut_at" required>
         </div>
         <div class="form-group">
-            <label for="odluka">odluka: </label>
-            <input class="form-control" type="date" id="odluka" name="odluka" required>
+            <label for="odluka_donesena_at">Одлука о покретању: </label>
+            <input class="form-control" type="date" id="odluka_donesena_at" name="odluka_donesena_at" required>
         </div>
         <div class="form-group">
-            <label for="resenje">resenje: </label>
-            <input class="form-control" type="date" id="resenje" name="resenje" required>
+            <label for="resenje_at">Решење о образовању комисије: </label>
+            <input class="form-control" type="date" id="resenje_at" name="resenje_at" required>
         </div>   
         <div class="form-group">
-            <label for="izjava">izjava: </label>
-            <input class="form-control" type="date" id="izjava" name="izjava" required>
+            <label for="izjava_at">Изјава о одсуству сукоба интереса: </label>
+            <input class="form-control" type="date" id="izjava_at" name="izjava_at" required>
         </div>
         <div class="form-group">
-            <label for="datum_direktor">datum_direktor: </label>
-            <input class="form-control" type="date" id="datum_direktor" name="datum_direktor" required>
+            <label for="dokumentacija_direktor_at">Достављање конкурсне документације: </label>
+            <input class="form-control" type="date" id="dokumentacija_direktor_at" name="dokumentacija_direktor_at" required>
         </div>
         <div class="form-group">
-            <label for="datum_ojn">Datum oglasavanja javne nabavke : </label>
-            <input class="form-control" type="date" id="datum_ojn" name="datum_ojn" required>
+            <label for="dokumentacija_ojn_at">Датум слања техничке документације ОЈН: </label>
+            <input class="form-control" type="date" id="dokumentacija_ojn_at" name="dokumentacija_ojn_at" required>
         </div>
         <div class="form-group">
-            <label for="otvaranje_ponuda">otvaranje_ponuda: </label>
-            <input class="form-control" type="date" id="otvaranje_ponuda" name="otvaranje_ponuda" required>
+            <label for="ponuda_otvorena_at">Отварање понуда: </label>
+            <input class="form-control" type="date" id="ponuda_otvorena_at" name="ponuda_otvorena_at" required>
         </div>
         <div class="form-group">
-            <button class="btn btn-success" type="submit"><i class="fa fa-plus"></i>Dodaj realizaciju</button>
+            <button class="btn btn-red" type="submit"><i class="fa fa-plus"></i> Dodaj realizaciju</button>
         </div> 
     </form>
 </div>

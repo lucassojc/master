@@ -3,45 +3,53 @@
 {% block main %}
 {% spaceless %}
     <div class="row">
-        <table border="2px">
+        <button class="btn btn-blue" onclick="location.href='{{ BASE }}realizacija-ugovora/add'">Dodaj ugovor</button>
+        <table class="table-ru table-bordered table-hover">
             <tr>
-                <th>Aproprijacija</th>
-                <th>Opis</th>
-                <th>Broj</th>
-                <th>Suma</th>
-                <th>Dobavljac</th>
-                <th>Trajanje</th>
-                <th>Realizacija</th>
-                <th>Datum realizacije</th>
-                <th>Efikasnost</th>
-                <th>Potroseno i planirano</th>
-                <th>Status</th>
-                <th>Napomena</th>
-                <th>Razlog neizvrsenja</th>
+                <th class="rb" rowspan="3"><span class="ps-red">Рб</span></th>
+                <th class="konto" rowspan="3">Конто / позиција - Предмет набавке</th>
+                <th class="suma">Уговорена сума без пдв-а</th>
+                <th class="realizacija">Реализација уговора</th>
+                <th class="potroseno">Потрошено / планирано</th>
             </tr>
-            
-           
+            <tr>
+                <th class="broj">Број уговора</th>
+                <th class="datum">Датум уговора</th>
+                <th class="trajanje">Трајање уговора</th>
+            </tr>
+            <tr>
+                <th class="dobavljac">Добављач</th>
+                <th class="datum_realizacije">Датум реализације уговора</th>
+                <th class="efektivnost">Ефективност реализованог уговора</th>
+            </tr>
             {% for realizacija_ugovora in ugovori %}
-            <tr>        
-                <td>{{ realizacija_ugovora.aproprijacija_fk }}</td>
-                <td>{{ realizacija_ugovora.opis }}</td>   
-                <td>{{ realizacija_ugovora.broj }}</td>
-                <td>{{ realizacija_ugovora.suma }}</td>
-                <td>{{ realizacija_ugovora.dobavljac }}</td>
-                <td>{{ realizacija_ugovora.trajanje }}</td>
-                <td>{{ realizacija_ugovora.realizacija }}</td>
-                <td>{{ realizacija_ugovora.datum_realizacije }}</td>
-                <td>{{ realizacija_ugovora.efikasnost }}</td>
-                <td>{{ realizacija_ugovora.potroseno_planirano }}</td>
-                <td>{{ realizacija_ugovora.status }}</td>
-                <td>{{ realizacija_ugovora.napomena }}</td>
-                <td>{{ realizacija_ugovora.razlog_neizvrsenja }}</td>
-            </tr>          
+            <tr>
+                <td class="rb ps-red bg-light" rowspan="5">{{ realizacija_ugovora.realizacija_ugovora_id }}</td>
+                <td class="konto" rowspan="3">{{ realizacija_ugovora.program_poslovanja_id }} - {{ realizacija_ugovora.opis_pjn }}</td>
+                <td class="suma">{{ realizacija_ugovora.suma|number_format(0, '.', '.') }}</td>
+                <td class="realizacija">{{ realizacija_ugovora.realizacija|number_format(0, '.', '.') }}</td>
+                <td class="potroseno">{{ realizacija_ugovora.potroseno_planirano|number_format(0, '.', '.') }}</td>
+            </tr>
+            <tr>
+                <td class="broj">{{ realizacija_ugovora.broj }}</td>
+                <td class="datum">{{ realizacija_ugovora.datum_ugovora_at|date("d-m-Y") }}</td>
+                <td class="trajanje">{{ realizacija_ugovora.trajanje }}</td>
+            </tr>
+            <tr>
+                <td class="dobavljac">{{ realizacija_ugovora.dobavljac }}</td>
+                <td class="datum_realizacije">{{ realizacija_ugovora.ugovor_realizovan_at|date("d-m-Y") }}</td>
+                <td class="efektivnost">{{ realizacija_ugovora.cilj }}</td>
+            </tr>        
+            <tr>
+                <th class="napomena">Напомена - уговор</th>
+                <td colspan="3">{{ realizacija_ugovora.napomena }}</th>
+            </tr>
+            <tr>
+                <th class="razlog">Разлог неизвршења</th>
+                <td colspan="3">{{ realizacija_ugovora.razlog_neizvrsenja }}</th>
+            </tr>
             {% endfor %}
-            
         </table>
     </div>
-    <button class="btn btn-success" onclick="location.href='{{ BASE }}realizacija-sprovodjenja-nabavke/add'">Dodaj realizaciju</button>
-
 {% endspaceless %}
 {% endblock %}

@@ -1,0 +1,249 @@
+body {
+    background: url(/planJavnihNabavki/assets/img/bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+}
+
+.img {
+    background: url(/planJavnihNabavki/assets/img/pst.png) ;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    background-color: white;
+    padding: 0;
+}
+
+.outer-container {
+    padding: 50px;
+    text-align: center;
+}
+
+.poruka {
+    padding: 50px;
+    text-align: center;
+}
+
+.uputstva {
+    padding: 50px;
+}
+
+.row {
+    margin: 0;
+}
+
+.btn {
+    margin: 20px;
+}
+
+form {
+    margin: 20px;
+}
+
+form button {
+    margin-left: 0 !important;
+}
+
+.fa {
+    color: #d9261d;
+}
+
+.nav-item:hover {
+    color: #d9261d !important;
+}
+
+.navbar {
+    padding: 5px;
+}
+
+.ps-blue {
+    color: #003f72 !important;
+}
+
+.ps-red {
+    color: #d9261d;
+}
+
+.btn-blue {
+    border-color: #003f72;
+}
+
+.btn-red {
+    border-color:#d9261d;
+}
+
+.nav-item {
+    font-size: 18px;
+}
+
+.main-margin {
+    margin-top: 70px;
+}
+
+.login-form {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 270px;
+}
+
+.login-header {
+    text-align: center;
+    background-color: white;
+    height: 50px;
+}
+
+footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}
+
+main {
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+table {
+    font-size: 14px;
+}
+
+.table-pjn-head {
+    background-color: #003f72;
+    color: white;
+    width: 100%;
+}
+
+.table-pjn tr th {
+    background-color: #003f72;
+    color: white;
+}
+
+.table-pjn-head .rb, .table-pjn .rb {
+    width: 52px;
+    text-align: center;
+}
+
+.table-pjn-head .opis, .table-pjn .opis {
+    width: 334px;
+}
+
+.table-pjn-head .vrednost, .table-pjn .vrednost {
+    width: 120px;
+}
+
+.table-pjn-head .bezpdv, .table-pjn-head .sapdv, .table-pjn .bezpdv, .table-pjn .sapdv {
+    width: 100px;
+    text-align: center;
+}
+
+.table-pjn-head .konto, .table-pjn .konto {
+    width: 90px;
+    text-align: center;
+}
+
+.table-pjn-head .postupak, .table-pjn .postupak {
+    width: 93px;
+    text-align: center;
+}
+
+.table-pjn-head .planirano {
+    width: 290px;
+    text-align: center;
+}
+
+.table-pjn-head .datum {
+    text-align: center;
+}
+
+.table-pjn-head .pokretanje, .table-pjn-head .zakljucenje, .table-pjn-head .izvrsenje, .table-pjn .pokretanje, .table-pjn .zakljucenje, .table-pjn .izvrsenje {
+    width: 85px;
+    text-align: center;
+}
+
+.table-pp {
+    width: 1140px;
+}
+
+.table-pp .rb {
+    width: 50px;
+}
+
+.table-pp tr th {
+    height: 50px;
+    background-color: #003f72;
+    color: white;
+    text-align: center;
+}
+
+.table-pp .konto {
+    width: 200px;
+}
+
+.table-pp .opis {
+    width: 800px;
+}
+
+.table-pp .iznos {
+    width: 138px;
+}
+
+.table-rsn tr:nth-child(4n+1), .table-rsn tr:nth-child(4n+2) {
+    background-color: #003f727a;
+}
+
+.table-rsn-head {
+    text-align: center;
+}
+
+.table-rsn-head tr th {
+    background-color: #003f72;
+    color: white;
+}
+
+.table-rsn-head .rb, .table-rsn .rb {
+    width: 40px;
+    text-align: center;
+}
+
+.table-rsn-head .konto, .table-rsn .konto, .table-rsn-head .broj, .table-rsn .broj {
+    width: 100px;
+    text-align: center;
+}
+
+.table-rsn-head .predmet, .table-rsn .predmet {
+    width: 900px;
+}
+
+.table-rsn-head .odluka, .table-rsn .odluka, .table-rsn-head .resenje, .table-rsn .resenje, .table-rsn-head .izjava, .table-rsn .izjava, .table-rsn-head .dostavljanje, .table-rsn .dostavljanje, .table-rsn-head .slanje, .table-rsn .slanje {
+    width: 180px;
+    text-align: center;
+}
+
+.table-rsn-head .zahtev, .table-rsn .zahtev, .table-rsn-head .otvaranje, .table-rsn .otvaranje {
+    text-align: center;
+}
+
+.table-ru {
+    width: 1140px;
+}
+
+.table-ru tr th {
+    background-color: #003f72;
+    color: white;
+}
+
+.table-ru .rb {
+    text-align: center;
+    width: 40px;
+}
+
+.edit-button {
+    text-align: center;
+    font-size: 25px;
+}

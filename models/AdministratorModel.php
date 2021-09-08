@@ -23,4 +23,16 @@
         public function getByUsername(string $username) {
             return $this->getByFieldName('username', $username);
         }
+
+        public function check(string $username, string $password) {
+            $sql = 'SELECT * FROM administrator WHERE username = ? AND password = ? ;';
+            $prep = $this->dbc->getConnection()->prepare($sql);
+            $res = $prep->execute([$username, $password]);
+            $item = null;
+            if($res){
+                $item = $prep->fetch(\PDO::FETCH_OBJ);
+            }
+            return $item;
+        }
+
     }

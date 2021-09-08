@@ -1,0 +1,28 @@
+{% extends "/_global/index.html" %}
+
+{% block main %}
+<div>
+
+	<a class="btn btn-blue" href="{{ BASE }}program-poslovanja">Nazad</a>
+
+
+    <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
+        
+        <div class="form-group">
+            <label for="konto">Конто / позиција: </label>
+            <input class="form-control" type="text" id="konto" name="konto" value="{{ program.konto }}" required>
+        </div>
+        <div class="form-group">
+            <label for="opis_pp">Опис: </label>
+            <input class="form-control" type="text" id="opis_pp" name="opis_pp" value="{{ program.opis_pp }}" required>
+        </div>
+        <div class="form-group">
+            <label for="iznos">Износ: </label>
+            <input class="form-control" type="iznos" id="iznos" name="iznos" value="{{ program.iznos }}" required> 
+        </div>
+        <div class="form-group">
+            <button class="btn btn-red" type="submit"><i class="fa fa-edit"></i> Izmeni program</button>
+        </div> 
+    </form>
+</div>
+{% endblock %}

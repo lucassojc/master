@@ -1,7 +1,8 @@
 // composer dump-autoload
 // composer require twig/twig 
 // yarn add bootstrap / jquery / font-awesome
+// git init // kreiranje git repozitorijuma
 
-1.Pogledati MainController
-2.Proveriti za global index ucitavanje bootstrap/jquery
-3.Proveriti da li radi bootstrap i jquery
+---------------
+1. Brisanje fajla sesije nakon nekog vremena
+2. Stampanje jquery
